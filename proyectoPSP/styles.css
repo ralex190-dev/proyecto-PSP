@@ -158,6 +158,10 @@ hr {
     color: white;
     border-color: white;
 }
+
+/* ==========================================================================
+   4. SECCIÓN DE TARJETAS (GRID DE PERROS)
+   ========================================================================== */
 /*news cards*/
 
 .news-cards{
@@ -171,20 +175,100 @@ hr {
 .news-cards img{
     width: 100%;
     height: 180px;
+    object-fit: cover;
+    border-radius: 6px;
+    margin-bottom: 15px;
+    background-color: #eaeaea;
+    transition: object-fit 0.4s ease, transform 0.4s ease;
+}
+
+.news-cards img:hover {
+    object-fit: contain; /* Cambia instantáneamente a mostrar la foto completa */
+    transform: scale(1.02); /* Le da un sutil zoom del 2% para resaltar la tarjeta */
+}
+
+.news-cards h3 {
+    font-family: var(--fuente-titulos);
+    font-size: 20px;
+    margin-bottom: 10px;
+    text-transform: capitalize;
+}
+
+.news-cards p {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 15px;
+    flex-grow: 1;
 }
 
 .news-cards a{
-    padding: 10px 0;
-    color: red;
+    color: var(--color-acento);
     text-transform: uppercase;
     display: inline-block;
     font-weight: bold;
+    font-size: 14px;
 }
+
+.news-cards a:hover {
+    color: var(--color-principal);
+}
+
+/* ==========================================================================
+   5. SECCIÓN BANNER (SALUD)
+   ========================================================================== */
 /* cards-banner*/
 
 .cards-banner {
     width: 100%;
     height: 350px;
-    background: url(./imagen/salud.jpg);
+    background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('./imagen/salud.jpg') no-repeat center center/cover;
     margin-bottom: 40px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    padding: 40px;
+    color: white;
 } 
+
+.cards-banner .content {
+    max-width: 500px;
+}
+
+.cards-banner h2 {
+    font-family: var(--fuente-titulos);
+    font-size: 32px;
+    margin-bottom: 10px;
+}
+
+/* ==========================================================================
+   6. INTERFAZ ADAPTATIVA (MOBILE-FIRST RESPONSIVE)
+   ========================================================================== */
+@media (max-width: 992px) {
+    .news-cards {
+        grid-template-columns: repeat(2, 1fr); /* 2 columnas en tablets */
+    }
+}
+
+@media (max-width: 768px) {
+    .nav-main {
+        flex-direction: column;
+        gap: 15px;
+    }
+    .nav-main ul.nav-menu {
+        flex-direction: column;
+        align-items: center;
+        margin-left: 0;
+        width: 100%;
+    }
+    .news-cards {
+        grid-template-columns: 1fr; /* 1 sola columna en móviles */
+    }
+    .showcase {
+        height: auto;
+        padding: 40px 20px;
+    }
+    .cards-banner {
+        height: auto;
+        padding: 40px 20px;
+    }
+}
