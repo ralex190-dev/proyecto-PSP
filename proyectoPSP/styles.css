@@ -1,0 +1,112 @@
+/*para tdos los elementos dentro de la pagina*/
+*{
+    box-sizing: border-box;/*todos los espaciados internos y externos*/
+    margin: 0;/*no margenes hacia afuera*/
+    padding: 0;/*no halla espaciado hacia adentro*/
+}
+body{
+    background-color: black;
+    color: black;
+    background-color: whitesmoke;
+}
+
+a{
+    color: black;
+
+}
+ul{
+    list-style: none;
+}
+.container{
+    width: 90%;
+    margin: auto;
+}
+/*navigation*/
+.nav-main{
+    font-size: 17px;
+    display: flex;/*me permite organizar los elementos*/
+    justify-content: space-between;/*utiliza todo el ancho disponible*/
+        
+}
+.nav-brand{
+    width: 150px;
+}
+/*nav left- navegacion izquierda*/
+
+.nav-main ul{
+    display: flex;/*ponemos cada etiqueata al lado de la otra*/
+}
+.nav-main ul li{/* le damos un esapciado internos*/
+    padding: 10px;
+}
+.nav-main ul li a:hover{
+    border-bottom: 2px solid color #ffffff;
+
+}
+.nav-main ul.nav-menu{
+    /*la clase nav-menu, utilizara el display flex para poner 
+    al inicio de la imagen con un esapciado*/
+
+    flex: 1;
+    margin-left: 20px;
+}
+hr{
+    margin: 10px 0;
+}
+
+/*showcase*/
+.showcase{
+    width: 100%;
+    height: 550px;
+    /*ponemos una imagen de fondo y la centramos en la pantalla*/
+    background: url(./imagen/Perros.jpg) no-repeat center center/cover;
+    padding: 50px;
+    margin-bottom: 20px;
+    display: flex;/*para centrar texo*/
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;/*ponemos tod el texto centrado en la parte inferior*/
+
+}
+.btn{
+    cursor: pointer;/*aparece el selector al tocar el icono read more*/
+    display: inline-block;
+    border: 0;
+    font-weight: bold;
+    padding: 10px 20px;
+    background: #262626;
+    color: white;
+    font-size: 20px;
+    border: 1px solid white;
+    margin: 10px 0;
+}
+/*news cards*/
+
+.news-cards{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 25px;
+    margin: 10px 0;
+
+}
+
+.news-cards img{
+    width: 100%;
+    height: 180px;
+}
+
+.news-cards a{
+    padding: 10px 0;
+    color: red;
+    text-transform: uppercase;
+    display: inline-block;
+    font-weight: bold;
+}
+/* cards-banner*/
+
+.cards-banner {
+    width: 100%;
+    height: 350px;
+    background: url(./imagen/salud.jpg);
+    margin-bottom: 40px;
+} 
