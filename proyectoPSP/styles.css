@@ -1,59 +1,113 @@
+/* ==========================================================================
+   1. CONFIGURACIÓN GLOBAL Y VARIABLES
+   ========================================================================== */
+
 /*para tdos los elementos dentro de la pagina*/
+
+:root{
+    --color-principal: #2c3e50;
+    --color-acento: #e67e22;
+    --color-oscuro: #262626;
+    --color-fondo: #f8f9fa;
+    --color-texto: #333333;
+    --fuente-titulos: 'Oswald', sans-serif;
+    --fuente-cuerpo: 'Google Sans Flex', sans-serif;
+}
+
 *{
     box-sizing: border-box;/*todos los espaciados internos y externos*/
     margin: 0;/*no margenes hacia afuera*/
     padding: 0;/*no halla espaciado hacia adentro*/
 }
+
 body{
-    background-color: black;
-    color: black;
-    background-color: whitesmoke;
+    background-color: var(--color-fondo);
+    color: var(--color-texto);
+    font-family: var(--fuente-cuerpo);
+    line-height: 1.6;   
 }
 
 a{
-    color: black;
-
+    color: var(--color-principal);
+    text-decoration: none;
+    transition: color 0.3s ease;
 }
+
 ul{
     list-style: none;
 }
+
+img{
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
 .container{
     width: 90%;
+    max-width: 1200px;
     margin: auto;
+    padding: 20px 0;
 }
+
+hr {
+    border: 0;
+    height: 1px;
+    background: #ddd;
+    margin: 15px 0;
+}
+
+/* ==========================================================================
+   2. BARRA DE NAVEGACIÓN (NAV)
+   ========================================================================== */
+
 /*navigation*/
 .nav-main{
     font-size: 17px;
     display: flex;/*me permite organizar los elementos*/
     justify-content: space-between;/*utiliza todo el ancho disponible*/
-        
+    align-items: center;
+    padding: 10px 0;    
 }
+
 .nav-brand{
     width: 150px;
+    height: auto;
 }
 /*nav left- navegacion izquierda*/
 
-.nav-main ul{
-    display: flex;/*ponemos cada etiqueata al lado de la otra*/
-}
-.nav-main ul li{/* le damos un esapciado internos*/
-    padding: 10px;
-}
-.nav-main ul li a:hover{
-    border-bottom: 2px solid color #ffffff;
-
-}
 .nav-main ul.nav-menu{
-    /*la clase nav-menu, utilizara el display flex para poner 
-    al inicio de la imagen con un esapciado*/
-
+    display: flex;/*ponemos cada etiqueata al lado de la otra*/
     flex: 1;
-    margin-left: 20px;
-}
-hr{
-    margin: 10px 0;
+    margin-left: 30px;
+    gap: 15px
 }
 
+.nav-main ul li a{/* le damos un esapciado internos*/
+    font-family: var(--fuente-titulos);
+    text-transform: uppercase;
+    font-weight: 500;
+    padding: 8px 4px;
+    color: var(--color-oscuro);
+}
+
+.nav-main ul li a:hover{
+    border-bottom: 2px solid var(--color-acento);
+    color: var(--color-acento);
+}
+
+.menu-right a {
+    font-size: 18px;
+    color: var(--color-oscuro);
+}
+
+.menu-right a:hover {
+    color: var(--color-acento);
+}
+
+/* ==========================================================================
+   3. HERO / SHOWCASE (BANNER PRINCIPAL)
+   ========================================================================== */
 /*showcase*/
 .showcase{
     width: 100%;
