@@ -17,14 +17,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
-            // Lógica de cálculo simplificada de ración diaria recomendada (pienso/croqueta seca)
-            // Base en gramos según peso y etapa
+            // Lógica de cálculo simplificada de ración diaria recomendada
             let baseGramsPerKg = 15; // Adulto estándar
             
             if (ageStage === 'cachorro') {
-                baseGramsPerKg = 25; // Los cachorros necesitan más energía y nutrientes por kilo
+                baseGramsPerKg = 25; 
             } else if (ageStage === 'senior') {
-                baseGramsPerKg = 12; // Los perros mayores necesitan menos calorías
+                baseGramsPerKg = 12; 
             }
 
             let baseGrams = weight * baseGramsPerKg;
@@ -40,7 +39,6 @@ document.addEventListener('DOMContentLoaded', () => {
             // Calcular total y redondear
             let finalGrams = Math.round(baseGrams * activityFactor);
 
-            // Umbrales de seguridad mínimos
             if (finalGrams < 40) {
                 finalGrams = 40;
             }
@@ -48,6 +46,40 @@ document.addEventListener('DOMContentLoaded', () => {
             // Mostrar el resultado con animación
             gramsValue.textContent = finalGrams;
             calcResult.classList.remove('hidden');
+
+            // ==========================================================================
+            // NUEVO: RENDERIZAR DIAGRAMA DE TORTA (HTML5 CANVAS)
+            // ==========================================================================
+            const canvas = document.getElementById('nutri-chart');
+            if (canvas) {
+                const ctx = canvas.getContext('2d');
+                ctx.clearRect(0, 0, canvas.width, canvas.height); // Limpiar gráficos anteriores
+
+                // Definiciones del gráfico
+                const centerX = canvas.width / 2;
+                const centerY = canvas.height / 2;
+                const radius = Math.min(centerX, centerY) - 10;
+
+                // Distribución porcentual típica (Proteína: 25%, Grasa: 15%, Carbohidratos: 60%)
+                const data = [0.25, 0.15, 0.60];
+                const colors = ['#e67e22', '#f1c40f', '#34495e']; // Tonos acorde a tu paleta
+                
+                let startAngle = 0;
+
+                for (let i = 0; i < data.length; i++) {
+                    const sliceAngle = data[i] * 2 * Math.PI;
+
+                    ctx.beginPath();
+                    ctx.moveTo(centerX, centerY);
+                    ctx.arc(centerX, centerY, radius, startAngle, startAngle + sliceAngle);
+                    ctx.closePath();
+
+                    ctx.fillStyle = colors[i];
+                    ctx.fill();
+
+                    startAngle += sliceAngle;
+                }
+            }
         });
     }
 });
