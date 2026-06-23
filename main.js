@@ -60,9 +60,36 @@ document.addEventListener('DOMContentLoaded', () => {
                 const centerY = canvas.height / 2;
                 const radius = Math.min(centerX, centerY) - 10;
 
-                // Distribución porcentual típica (Proteína: 25%, Grasa: 15%, Carbohidratos: 60%)
-                const data = [0.25, 0.15, 0.60];
-                const colors = ['#e67e22', '#f1c40f', '#34495e']; // Tonos acorde a tu paleta
+                // VARIABLES DINÁMICAS: Cambian según la etapa de vida elegida
+                let proteina, grasa, carbohidratos;
+
+                if (ageStage === 'cachorro') {
+                    proteina = 0.30; // 30% Proteína (Alto para crecimiento)
+                    grasa = 0.20;    // 20% Grasa (Mucha energía)
+                    carbohidratos = 0.50; // 50% Carbohidratos
+                } else if (ageStage === 'senior') {
+                    proteina = 0.22; // 22% Proteína (Moderado para mantenimiento)
+                    grasa = 0.10;    // 10% Grasa (Bajo para evitar sobrepeso)
+                    carbohidratos = 0.68; // 68% Carbohidratos
+                } else { // Adulto
+                    proteina = 0.25; // 25% Proteína
+                    grasa = 0.15;    // 15% Grasa
+                    carbohidratos = 0.60; // 60% Carbohidratos
+                }
+
+                // Actualizar las etiquetas de texto debajo del gráfico para que coincidan con la matemática
+                const labelsContainer = canvas.nextElementSibling;
+                if (labelsContainer) {
+                    labelsContainer.innerHTML = `
+                        <span><i class="fas fa-circle" style="color: #e67e22;"></i> Prot (${proteina * 100}%)</span>
+                        <span><i class="fas fa-circle" style="color: #f1c40f;"></i> Gras (${grasa * 100}%)</span>
+                        <span><i class="fas fa-circle" style="color: #34495e;"></i> Carb (${carbohidratos * 100}%)</span>
+                    `;
+                }
+
+                // Dibujar las rebanadas con los nuevos datos variables
+                const data = [proteina, grasa, carbohidratos];
+                const colors = ['#e67e22', '#f1c40f', '#34495e'];
                 
                 let startAngle = 0;
 
